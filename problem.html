@@ -1,0 +1,39 @@
+在一个局域网中，每台机器都有一个主机名，便于主机与主机之间的区分，因此为每台机器设置主机名，以容易记忆的方法来相互访问。比如我们在局域网中可以为根据每台机器的功能来为其命名
+
+1.设置主机名
+
+查看本机的主机名，使用如下三个命令中任意一个即可
+
+# hostname
+# uname -n
+# cat /proc/sys/kernel/hostname
+1
+2
+3
+使用 vi 编辑器打开 /etc/hostname 文件
+
+# vi /etc/hostname
+1
+删除文件中原有内容，添加内容主机名：Master，保存退出
+
+Master
+1
+2.设置主机名及IP映射
+
+使用 vi 编辑器打开 /etc/hosts 文件
+
+# vi /etc/hosts
+1
+在文件尾部添加内容，格式：IP地址 主机名（中间用空格分隔），保存退出
+
+192.168.242.130 Master
+1
+设置完成后，重启网路服务
+
+# systemctl restart network
+1
+使用 ping 命令 ping 主机名
+
+# ping Master
+1
+如果可以ping 通，表示设置成功
